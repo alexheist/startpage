@@ -1,0 +1,28 @@
+# Env
+bin/
+include/
+lib/
+lib64
+share/
+*.env
+*.pyc
+pyvenv.cfg
+*.git
+
+# Database
+*.sqlite3
+
+# Housekeeping
+*.old
+.*.sw*
+
+static/
+!main/static/
+
+# Migrations
+migrations/
+
+.vscode
+.DS_Store
+
+media/

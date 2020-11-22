@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  # Django Backend
+  # =======================
+  dj:
+    image: startpage:0.1.0
+    build: .
+    command: ./manage.py runserver 0.0.0.0:8000
+    tty: true
+    volumes:
+      - .:/usr/src/
+    ports:
+      - "8000:8000"
