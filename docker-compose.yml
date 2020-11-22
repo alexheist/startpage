@@ -12,3 +12,28 @@ services:
       - .:/usr/src/
     ports:
       - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY="foobar"
+      - DJANGO_DEBUG=0
+      - DB_ENGINE=django.db.backends.postgresql
+      - DB_NAME=startpage_dev
+      - DB_USER=dev_user
+      - DB_PASSWORD=devUserPa$$w0rd
+      - DB_HOST=db
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+  # Postgres Database
+  # =======================
+  db:
+    image: postgres:11.2-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=dev_user
+      - POSTGRES_PASSWORD=devUserPa$$w0rd
+      - POSTGRES_DB=startpage_dev
+
+volumes:
+  postgres_data:
