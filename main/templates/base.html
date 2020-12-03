@@ -1,0 +1,45 @@
+{% load static %}
+{% load sass_tags %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <title>Welcome</title>
+
+    <link rel="canonical" href="https://{{ request.get_host }}{{ request.get_full_path }}" />
+    <link rel="stylesheet" href="{% sass_src 'css/base.scss' %}" type="text/css" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+  </head>
+  <body>
+    <div class="container--left">
+      <h1 class="container__datetime">{% now 'F jS, Y' %}</h1>
+      <p id="time" class="container__datetime"></p>
+    </div>
+    <div class="container--right">
+    </div>
+  </body>
+  <script>
+    /* display time */
+    var element = document.getElementById("time");
+
+    window.setInterval(function() {
+      var d = new Date();
+      var hr = d.getHours();
+      var min = d.getMinutes();
+      var apmpm = "a.m.";
+
+      if (min < 10) { min = "0" + min; }
+      if (hr > 12) {
+        hr -= 12;
+        ampm = "p.m.";
+      }
+
+      element.innerHTML = `${hr}:${min} ${ampm}`;
+    }, 500);
+  </script>
+</html>
