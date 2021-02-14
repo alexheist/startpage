@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from main import models
 
 
 def index(request):
-    return render(request, "base.html", {})
+    links = models.Link.objects.filter(active=True)
+    return render(request, "base.html", {"links": links})

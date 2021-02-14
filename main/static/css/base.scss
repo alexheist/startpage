@@ -2,7 +2,7 @@
 
 body {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 320px calc(100% - 320px);
     grid-template-rows: 1fr;
     padding: 0;
     margin: 0;
@@ -19,15 +19,73 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .container {
-    &__datetime {
-        margin: 0;
-    }
-
     &--left {
         background-color: #222;
         color: #fff;
         height: 100vh;
-        width: 100%;
+        width: calc(100% - 20px);
         padding: 20px 0 0 20px;
     }
+
+    &--right {
+        height: calc(100vh - 40px);
+        padding: 20px;
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        grid-template-rows: 1fr;
+    }
+}
+
+.heading {
+    border-bottom: 1px solid #fff;
+    padding: 20px 0;
+    margin-right: 20px;
+
+    &__datetime {
+        margin: 0;
+    }
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.link {
+    padding: 0;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    filter: grayscale(100);
+    -webkit-filter: grayscale(100);
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    -ms-border-radius: 1px;
+    -o-border-radius: 1px;
+
+    &__image {
+       width: 50px;
+       height: 50px;
+       object-fit: cover;
+       margin-right: 20px;
+       border-radius: 1px;
+       -webkit-border-radius: 1px;
+       -moz-border-radius: 1px;
+       -ms-border-radius: 1px;
+       -o-border-radius: 1px;
+}
+
+    &:hover {
+        filter: grayscale(0);
+        -webkit-filter: grayscale(0);
+        background-color: #333;
+    }
+}
+
+.wotd {
+    border-left: 1px solid black;
+    padding-left: 20px;
 }

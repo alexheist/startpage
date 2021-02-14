@@ -8,6 +8,7 @@ from django.utils import timezone
 class Link(models.Model):
     active = models.BooleanField(default=None)
     icon = models.ImageField()
+    name = models.CharField(max_length=127)
     url = models.URLField()
 
 
