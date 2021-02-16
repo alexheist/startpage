@@ -25,6 +25,7 @@ class WordOfTheDay(models.Model):
 class Prompt(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     prompt = models.CharField(max_length=255)
+    selected_date = models.DateField(null=True, blank=True)
 
 
 class Entry(models.Model):

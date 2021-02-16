@@ -32,6 +32,12 @@
     <div class="container--right">
       <section class="writing">
         <h1>Prompt</h1>
+        <p class="writing__prompt">{{ prompt.prompt }}</p>
+        <form class="writing__form" action="">
+          <div class="writing__form--fade"></div>
+          <textarea class="writing__form--textarea" onkeyup="getWordCount(this);" autofocus></textarea>
+        </form>
+        <p id="wordcount" class="writing__wordcount"></p>
       </section>
       <section class="wotd">
         <h1>Word of the Day</h1>
@@ -40,7 +46,7 @@
   </body>
   <script>
     /* display time */
-    var element = document.getElementById("time");
+    var timeElement = document.getElementById("time");
 
     window.setInterval(function() {
       var d = new Date();
@@ -54,7 +60,16 @@
         ampm = "p.m.";
       }
 
-      element.innerHTML = `${hr}:${min} ${ampm}`;
+      timeElement.innerHTML = `${hr}:${min} ${ampm}`;
     }, 500);
+  </script>
+  <script>
+    /* display wordcount */
+    var wordCountElement = document.getElementById("wordcount");
+
+    function getWordCount(element) {
+      var wordCount = element.value.split(" ").length;
+      wordCountElement.innerText = wordCount;
+    }
   </script>
 </html>
