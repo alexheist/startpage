@@ -1,5 +1,8 @@
+import json
 import random
 
+from django import http
+from django.conf import settings
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -18,6 +21,17 @@ def _get_daily_prompt():
 
 
 def index(request):
+    if request.is_ajax():
+        prompt = models.Prompt.objects.get(prompt=request.POST["prompt"])
+        entry = request.POST["entry"]
+        secret = request.POST["secret"]
+        if secret == settings.FORM_SECRET:
+            models.Entry.objects.create(
+                prompt=prompt,
+                text=entry,
+            )
+            return http.JsonResponse({"status": 200})
+        return http.JsonResponse({"status": 401})
     links = models.Link.objects.filter(active=True)
     prompt = _get_daily_prompt()
     return render(request, "base.html", {"links": links, "prompt": prompt})

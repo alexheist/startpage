@@ -34,3 +34,7 @@ class Entry(models.Model):
     text = models.TextField()
     timestamp = models.DateTimeField(default=timezone.now)
     wordcount = models.PositiveSmallIntegerField()
+
+    def save(self, *args, **kwargs):
+        self.wordcount = len(self.text.split(" "))
+        super().save(*args, **kwargs)

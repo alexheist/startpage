@@ -119,3 +119,8 @@ STATICFILES_FINDERS = (
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(ROOT_DIR, "media")
+
+# Custom Functionality Settings
+# ===============================
+
+FORM_SECRET = os.environ.get("FORM_SECRET")

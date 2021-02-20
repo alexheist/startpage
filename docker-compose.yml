@@ -13,14 +13,15 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SECRET_KEY="foobar"
-      - DJANGO_DEBUG=0
-      - DB_ENGINE=django.db.backends.postgresql
-      - DB_NAME=startpage_dev
-      - DB_USER=dev_user
-      - DB_PASSWORD=devUserPa$$w0rd
-      - DB_HOST=db
-      - DB_PORT=5432
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DB_ENGINE=${DB_ENGINE}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - FORM_SECRET=${FORM_SECRET}
     depends_on:
       - db
 
@@ -31,9 +32,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=dev_user
-      - POSTGRES_PASSWORD=devUserPa$$w0rd
-      - POSTGRES_DB=startpage_dev
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
 
 volumes:
   postgres_data:
