@@ -16,10 +16,19 @@ class WordOfTheDay(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date = models.DateField(default=datetime.date.today)
     word = models.CharField(max_length=127)
+
+
+class Definition(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    word = models.ForeignKey(WordOfTheDay, on_delete=models.CASCADE)
     part_of_speech = models.CharField(max_length=31)
-    pronunciation = models.CharField(max_length=255)
-    definitions = models.TextField()
-    examples = models.TextField()
+    definition = models.TextField()
+
+
+class Example(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    word = models.ForeignKey(WordOfTheDay, on_delete=models.CASCADE)
+    example = models.TextField()
 
 
 class Prompt(models.Model):

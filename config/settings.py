@@ -124,3 +124,4 @@ MEDIA_ROOT = os.path.join(ROOT_DIR, "media")
 # ===============================
 
 FORM_SECRET = os.environ.get("FORM_SECRET")
+WORDNIK_SECRET = os.environ.get("WORDNIK_SECRET")

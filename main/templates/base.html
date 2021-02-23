@@ -32,7 +32,6 @@
     </div>
     <div class="container--right">
       <section class="writing">
-        <h1>Prompt</h1>
         <p class="writing__prompt">{{ prompt.prompt }}</p>
         <div class="writing__form">
           <div class="writing__form--fade"></div>
@@ -47,7 +46,16 @@
         </div>
       </section>
       <section class="wotd">
-        <h1>Word of the Day</h1>
+        <h2 class="wotd__word">{{ wotd.word }}</h2>
+        <h5 class="wotd__header">Definitions</h5>
+        {% for definition in wotd.definition_set.all %}
+          <p class="wotd__subhead">{{ forloop.counter }}. ({{ definition.part_of_speech }})</p>
+          <p class="wotd__definition">{{ definition.definition }}</p>
+        {% endfor %}
+        <h5 class="wotd__header">Examples</h5>
+        {% for example in wotd.example_set.all %}
+          <p class="wotd__example">"{{ example.example }}"</p>
+        {% endfor %}
       </section>
     </div>
   </body>

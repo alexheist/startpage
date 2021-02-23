@@ -183,4 +183,26 @@ textarea {
 .wotd {
     border-left: 1px solid black;
     padding-left: 20px;
+
+    &__header {
+        color: #777;
+        border-bottom: 1px solid #777;
+    }
+
+    &__subhead {
+        margin-bottom: 0;
+        font-size: 12px;
+    }
+
+    &__pos {
+        color: #777;
+    }
+
+    &__definition {
+        margin-top: 5px;
+    }
+
+    &__example {
+        font-style: italic;
+    }
 }
