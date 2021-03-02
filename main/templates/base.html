@@ -29,6 +29,10 @@
           </a>
         {% endfor %}
       </section>
+      <section class="switches">
+        <button type="button" class="switch switch--write" onclick="switchWrite();">Write</button>
+        <button type="button" class="switch switch--read" onclick="switchRead();">Read</button>
+      </section>
     </div>
     <div class="container--right">
       <section class="writing">
@@ -113,5 +117,54 @@
         },
       });
     });
+  </script>
+  <script>
+    /* handle read/write switch */
+    function switchRead() {
+      var prompt = $(".writing__prompt")[0];
+      var textarea = $(".writing__form--textarea")[0];
+      var wordCountElement = $("#wordcount")[0];
+      var submissionForm = $("#submission-form")[0];
+
+      $.ajax({
+        type: "GET",
+        url: "/switch-read/",
+        success: function(data) {
+          /* update prompt, textarea, and wordcount */
+          prompt.innerText = data.prompt;
+          textarea.innerText = data.text;
+          $(".writing__form--textarea").prop("readonly", true);
+          wordCountElement.innerText = data.words;
+          submissionForm.style.display = "none";
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      });
+    }
+
+    function switchWrite() {
+      var prompt = $(".writing__prompt")[0];
+      var textarea = $(".writing__form--textarea")[0];
+      var wordCountElement = $("#wordcount")[0];
+      var submissionForm = $("#submission-form")[0];
+
+      $.ajax({
+        type: "GET",
+        url: "/switch-write/",
+        success: function(data) {
+          /* reset prompt, textarea, and wordcount */
+          prompt.innerText = data.prompt;
+          textarea.innerText = "";
+          $(".writing__form--textarea").prop("readonly", false);
+          $(".writing__form--textarea").focus();
+          wordCountElement.innerText = "0";
+          submissionForm.style.display = "initial";
+        },
+        error: function(data) {
+          console.log(data);
+        }
+      });
+    }
   </script>
 </html>

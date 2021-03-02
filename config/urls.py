@@ -7,4 +7,6 @@ from main import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.index),
+    path("switch-read/", views.switch_read),
+    path("switch-write/", views.switch_write),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

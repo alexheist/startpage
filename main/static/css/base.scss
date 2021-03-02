@@ -85,6 +85,35 @@ h1,h2,h3,h4,h5,h6 {
     }
 }
 
+.switches {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.switch {
+    outline: none;
+    border: 1px solid white;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    background-color: transparent;
+    color: white;
+    margin-right: 10px;
+    margin-bottom: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: white;
+        color: #222;
+    }
+}
+
 .writing {
     display: flex;
     flex-direction: column;
@@ -148,6 +177,7 @@ h1,h2,h3,h4,h5,h6 {
     &__secret {
         border: none;
         outline: none;
+        padding: 2px;
         border-bottom: 1px solid black;
     }
 
@@ -183,6 +213,8 @@ textarea {
 .wotd {
     border-left: 1px solid black;
     padding-left: 20px;
+    max-height: 100vh;
+    overflow-y: scroll;
 
     &__header {
         color: #777;
@@ -200,9 +232,15 @@ textarea {
 
     &__definition {
         margin-top: 5px;
+        font-size: 12px;
     }
 
     &__example {
         font-style: italic;
+        font-size: 12px;
+    }
+
+    &::-webkit-scrollbar {
+        width: 0px;
     }
 }

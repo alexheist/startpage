@@ -62,3 +62,19 @@ def index(request):
     return render(
         request, "base.html", {"links": links, "prompt": prompt, "wotd": wotd}
     )
+
+
+def switch_read(request):
+    entry = random.choice(models.Entry.objects.all())
+    return http.JsonResponse(
+        {
+            "status": 200,
+            "prompt": entry.prompt.prompt,
+            "text": entry.text,
+            "words": str(entry.wordcount),
+        }
+    )
+
+
+def switch_write(request):
+    return http.JsonResponse({"status": 200, "prompt": _get_daily_prompt().prompt})
