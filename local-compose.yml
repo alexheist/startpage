@@ -1,0 +1,41 @@
+version: "3.7"
+
+services:
+  # Django Backend
+  # =======================
+  dj:
+    image: startpage:0.1.0
+    build: .
+    command: ./manage.py runserver 0.0.0.0:8000
+    tty: true
+    volumes:
+      - .:/usr/src/
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
+      - DJANGO_DEBUG=${DJANGO_DEBUG}
+      - DB_ENGINE=${DB_ENGINE}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - FORM_SECRET=${FORM_SECRET}
+      - WORDNIK_SECRET=${WORDNIK_SECRET}
+    depends_on:
+      - db
+
+  # Postgres Database
+  # =======================
+  db:
+    image: postgres:11.2-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+volumes:
+  postgres_data:

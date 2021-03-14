@@ -4,9 +4,9 @@ services:
   # Django Backend
   # =======================
   dj:
-    image: startpage:0.1.0
+    image: startpage:1.0.0
     build: .
-    command: ./manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi:application -b 0.0.0.0:8000
     tty: true
     volumes:
       - .:/usr/src/
@@ -33,9 +33,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
 
 volumes:
   postgres_data:
