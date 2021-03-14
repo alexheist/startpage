@@ -6,7 +6,7 @@ services:
   dj:
     image: startpage:1.0.0
     build: .
-    command: gunicorn config.wsgi:application -b 0.0.0.0:8000
+    command: gunicorn config.wsgi:application -w 3 -b 0.0.0.0:8000 --error-logfile gunicorn-error.log --access-logfile gunicorn-access.log --capture-output --log-level debug
     tty: true
     volumes:
       - .:/usr/src/

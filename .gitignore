@@ -15,6 +15,7 @@ pyvenv.cfg
 # Housekeeping
 *.old
 .*.sw*
+*.log
 
 static/
 !main/static/
